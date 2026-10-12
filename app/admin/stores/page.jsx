@@ -1,5 +1,5 @@
 'use client'
-import { storesDummyData } from "@/assets/assets"
+import { getApprovedStores, toggleStoreActive } from "@/lib/mockApi"
 import StoreInfo from "@/components/admin/StoreInfo"
 import Loading from "@/components/Loading"
 import { useEffect, useState } from "react"
@@ -11,13 +11,14 @@ export default function AdminStores() {
     const [loading, setLoading] = useState(true)
 
     const fetchStores = async () => {
-        setStores(storesDummyData)
+        setStores(await getApprovedStores())
         setLoading(false)
     }
 
     const toggleIsActive = async (storeId) => {
-        // Logic to toggle the status of a store
-
+        const updated = await toggleStoreActive(storeId)
+        setStores(prev => prev.map(store => store.id === storeId ? updated : store))
+        return updated.isActive ? "Store activated" : "Store deactivated"
     }
 
     useEffect(() => {
@@ -39,7 +40,7 @@ export default function AdminStores() {
                             <div className="flex items-center gap-3 pt-2 flex-wrap">
                                 <p>Active</p>
                                 <label className="relative inline-flex items-center cursor-pointer text-gray-900">
-                                    <input type="checkbox" className="sr-only peer" onChange={() => toast.promise(toggleIsActive(store.id), { loading: "Updating data..." })} checked={store.isActive} />
+                                    <input type="checkbox" className="sr-only peer" onChange={() => toast.promise(toggleIsActive(store.id), { loading: "Updating data...", success: (msg) => msg, error: (err) => err.message })} checked={store.isActive} />
                                     <div className="w-9 h-5 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
                                     <span className="dot absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4"></span>
                                 </label>

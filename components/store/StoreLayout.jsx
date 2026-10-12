@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 import SellerNavbar from "./StoreNavbar"
 import SellerSidebar from "./StoreSidebar"
-import { dummyStoreData } from "@/assets/assets"
+import { getMyStore } from "@/lib/mockApi"
 
 const StoreLayout = ({ children }) => {
 
@@ -15,8 +15,9 @@ const StoreLayout = ({ children }) => {
     const [storeInfo, setStoreInfo] = useState(null)
 
     const fetchIsSeller = async () => {
-        setIsSeller(true)
-        setStoreInfo(dummyStoreData)
+        const store = await getMyStore()
+        setIsSeller(store?.status === 'approved')
+        setStoreInfo(store)
         setLoading(false)
     }
 

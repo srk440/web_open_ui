@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
 import AdminNavbar from "./AdminNavbar"
 import AdminSidebar from "./AdminSidebar"
+import { getIsAdmin } from "@/lib/mockApi"
 
 const AdminLayout = ({ children }) => {
 
@@ -12,7 +13,7 @@ const AdminLayout = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     const fetchIsAdmin = async () => {
-        setIsAdmin(true)
+        setIsAdmin(await getIsAdmin())
         setLoading(false)
     }
 

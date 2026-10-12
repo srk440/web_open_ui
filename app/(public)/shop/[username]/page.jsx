@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { MailIcon, MapPinIcon } from "lucide-react"
 import Loading from "@/components/Loading"
 import Image from "next/image"
-import { dummyStoreData, productDummyData } from "@/assets/assets"
+import { getStoreByUsername } from "@/lib/mockApi"
 
 export default function StoreShop() {
 
@@ -15,14 +15,28 @@ export default function StoreShop() {
     const [loading, setLoading] = useState(true)
 
     const fetchStoreData = async () => {
-        setStoreInfo(dummyStoreData)
-        setProducts(productDummyData)
+        try {
+            const { store, products } = await getStoreByUsername(username)
+            setStoreInfo(store)
+            setProducts(products)
+        } catch {
+            setStoreInfo(null)
+            setProducts([])
+        }
         setLoading(false)
     }
 
     useEffect(() => {
         fetchStoreData()
-    }, [])
+    }, [username])
+
+    if (!loading && !storeInfo) {
+        return (
+            <div className="min-h-[70vh] mx-6 flex items-center justify-center text-slate-400">
+                <h1 className="text-2xl sm:text-4xl font-semibold">Store not found</h1>
+            </div>
+        )
+    }
 
     return !loading ? (
         <div className="min-h-[70vh] mx-6">

@@ -2,15 +2,21 @@
 import PageTitle from "@/components/PageTitle"
 import { useEffect, useState } from "react";
 import OrderItem from "@/components/OrderItem";
-import { orderDummyData } from "@/assets/assets";
+import Loading from "@/components/Loading";
+import { getMyOrders } from "@/lib/mockApi";
 
 export default function Orders() {
 
     const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setOrders(orderDummyData)
+        getMyOrders()
+            .then(setOrders)
+            .finally(() => setLoading(false))
     }, []);
+
+    if (loading) return <Loading />
 
     return (
         <div className="min-h-[70vh] mx-6">

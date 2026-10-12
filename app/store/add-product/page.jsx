@@ -3,6 +3,7 @@ import { assets } from "@/assets/assets"
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
+import { addProduct, imageFileToDataUrl } from "@/lib/mockApi"
 
 export default function StoreAddProduct() {
 
@@ -25,13 +26,24 @@ export default function StoreAddProduct() {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault()
-        // Logic to add a product
-        
+        const files = Object.values(images).filter(Boolean)
+        if (files.length === 0) throw new Error("Please upload at least one image")
+        if (Number(productInfo.price) > Number(productInfo.mrp)) throw new Error("Offer price can't be more than the actual price")
+        setLoading(true)
+        try {
+            const imageUrls = await Promise.all(files.map(file => imageFileToDataUrl(file)))
+            await addProduct({ ...productInfo, images: imageUrls })
+        } finally {
+            setLoading(false)
+        }
+        setProductInfo({ name: "", description: "", mrp: 0, price: 0, category: "" })
+        setImages({ 1: null, 2: null, 3: null, 4: null })
+        return "Product added"
     }
 
 
     return (
-        <form onSubmit={e => toast.promise(onSubmitHandler(e), { loading: "Adding Product..." })} className="text-slate-500 mb-28">
+        <form onSubmit={e => toast.promise(onSubmitHandler(e), { loading: "Adding Product...", success: (msg) => msg, error: (err) => err.message })} className="text-slate-500 mb-28">
             <h1 className="text-2xl">Add New <span className="text-slate-800 font-medium">Products</span></h1>
             <p className="mt-7">Product Images</p>
 

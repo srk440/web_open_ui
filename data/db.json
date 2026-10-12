@@ -1,0 +1,903 @@
+{
+  "currentUserId": "user_1",
+  "users": [
+    {
+      "id": "user_1",
+      "name": "GreatStack",
+      "email": "greatstack@example.com",
+      "image": "/images/gs_logo.jpg",
+      "isAdmin": true,
+      "cart": {}
+    },
+    {
+      "id": "user_2",
+      "name": "Kristin Watson",
+      "email": "kristin@example.com",
+      "image": "/images/profile_pic1.jpg",
+      "isAdmin": false,
+      "cart": {}
+    },
+    {
+      "id": "user_3",
+      "name": "Jenny Wilson",
+      "email": "jenny@example.com",
+      "image": "/images/profile_pic2.jpg",
+      "isAdmin": false,
+      "cart": {}
+    },
+    {
+      "id": "user_4",
+      "name": "Bessie Cooper",
+      "email": "bessie@example.com",
+      "image": "/images/profile_pic3.jpg",
+      "isAdmin": false,
+      "cart": {}
+    }
+  ],
+  "stores": [
+    {
+      "id": "store_1",
+      "userId": "user_1",
+      "name": "Happy Shop",
+      "username": "happyshop",
+      "status": "approved",
+      "isActive": true,
+      "logo": "/images/happy_store.webp",
+      "email": "happyshop@example.com",
+      "contact": "+0 1234567890",
+      "address": "3rd Floor, Happy Shop , New Building, 123 street , c sector , NY, US",
+      "description": "At Happy Shop, we believe shopping should be simple, smart, and satisfying. Whether you're hunting for the latest fashion trends, top-notch electronics, home essentials, or unique lifestyle products — we've got it all under one digital roof.",
+      "createdAt": "2025-08-22T08:34:15.155Z",
+      "updatedAt": "2025-08-22T08:34:47.162Z"
+    },
+    {
+      "id": "store_2",
+      "userId": "user_2",
+      "name": "GreatStack",
+      "username": "greatstack",
+      "status": "approved",
+      "isActive": true,
+      "logo": "/images/gs_logo.jpg",
+      "email": "greatstack@example.com",
+      "contact": "+0 1234567890",
+      "address": "123 Maplewood Drive Springfield, IL 62704 USA",
+      "description": "GreatStack is the education marketplace where you can buy goodies related to coding and tech",
+      "createdAt": "2025-08-22T08:22:16.189Z",
+      "updatedAt": "2025-08-22T08:22:44.273Z"
+    },
+    {
+      "id": "store_3",
+      "userId": "user_3",
+      "name": "Gadget Hub",
+      "username": "gadgethub",
+      "status": "pending",
+      "isActive": false,
+      "logo": "/images/gs_logo.jpg",
+      "email": "gadgethub@example.com",
+      "contact": "+0 9876543210",
+      "address": "45 Market Street, San Francisco, CA 94105 USA",
+      "description": "Gadget Hub sells the latest audio gear and smart accessories at honest prices.",
+      "createdAt": "2025-09-01T10:00:00.000Z",
+      "updatedAt": "2025-09-01T10:00:00.000Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_1",
+      "name": "Modern table lamp",
+      "description": "Modern table lamp with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty. Enhance your audio experience with this earbuds. Indulge yourself in a world of pure sound with 50 hours of uninterrupted playtime. Equipped with the cutting-edge Zen Mode Tech ENC and BoomX Tech, prepare to be enthralled by a symphony of crystal-clear melodies.",
+      "mrp": 40,
+      "price": 29,
+      "images": [
+        "/images/product_img1.png",
+        "/images/product_img2.png",
+        "/images/product_img3.png",
+        "/images/product_img4.png"
+      ],
+      "category": "Decoration",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-29T09:21:25.000Z"
+    },
+    {
+      "id": "prod_2",
+      "name": "Smart speaker gray",
+      "description": "Smart speaker with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 50,
+      "price": 29,
+      "images": [
+        "/images/product_img2.png"
+      ],
+      "category": "Speakers",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-28T09:21:25.000Z"
+    },
+    {
+      "id": "prod_3",
+      "name": "Smart watch white",
+      "description": "Smart watch with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 60,
+      "price": 29,
+      "images": [
+        "/images/product_img3.png"
+      ],
+      "category": "Watch",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-27T09:21:25.000Z"
+    },
+    {
+      "id": "prod_4",
+      "name": "Wireless headphones",
+      "description": "Wireless headphones with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 70,
+      "price": 29,
+      "images": [
+        "/images/product_img4.png"
+      ],
+      "category": "Headphones",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-26T09:21:25.000Z"
+    },
+    {
+      "id": "prod_5",
+      "name": "Smart watch black",
+      "description": "Smart watch with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 49,
+      "price": 29,
+      "images": [
+        "/images/product_img5.png"
+      ],
+      "category": "Watch",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-25T09:21:25.000Z"
+    },
+    {
+      "id": "prod_6",
+      "name": "Security Camera",
+      "description": "Security Camera with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 59,
+      "price": 29,
+      "images": [
+        "/images/product_img6.png"
+      ],
+      "category": "Camera",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-24T09:21:25.000Z"
+    },
+    {
+      "id": "prod_7",
+      "name": "Smart Pen for iPad",
+      "description": "Smart Pen for iPad with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 89,
+      "price": 29,
+      "images": [
+        "/images/product_img7.png"
+      ],
+      "category": "Pen",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-23T09:21:25.000Z"
+    },
+    {
+      "id": "prod_8",
+      "name": "Home Theater",
+      "description": "Home Theater with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 99,
+      "price": 29,
+      "images": [
+        "/images/product_img8.png"
+      ],
+      "category": "Theater",
+      "storeId": "store_1",
+      "inStock": true,
+      "createdAt": "2025-07-22T09:21:25.000Z"
+    },
+    {
+      "id": "prod_9",
+      "name": "Apple Wireless Earbuds",
+      "description": "Apple Wireless Earbuds with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 89,
+      "price": 29,
+      "images": [
+        "/images/product_img9.png"
+      ],
+      "category": "Earbuds",
+      "storeId": "store_2",
+      "inStock": true,
+      "createdAt": "2025-07-21T09:21:25.000Z"
+    },
+    {
+      "id": "prod_10",
+      "name": "Apple Smart Watch",
+      "description": "Apple Smart Watch with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 179,
+      "price": 29,
+      "images": [
+        "/images/product_img10.png"
+      ],
+      "category": "Watch",
+      "storeId": "store_2",
+      "inStock": true,
+      "createdAt": "2025-07-20T09:21:25.000Z"
+    },
+    {
+      "id": "prod_11",
+      "name": "RGB Gaming Mouse",
+      "description": "RGB Gaming Mouse with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 39,
+      "price": 29,
+      "images": [
+        "/images/product_img11.png"
+      ],
+      "category": "Mouse",
+      "storeId": "store_2",
+      "inStock": true,
+      "createdAt": "2025-07-19T09:21:25.000Z"
+    },
+    {
+      "id": "prod_12",
+      "name": "Smart Home Cleaner",
+      "description": "Smart Home Cleaner with a sleek design. It's perfect for any room. It's made of high-quality materials and comes with a lifetime warranty.",
+      "mrp": 199,
+      "price": 29,
+      "images": [
+        "/images/product_img12.png"
+      ],
+      "category": "Cleaner",
+      "storeId": "store_2",
+      "inStock": true,
+      "createdAt": "2025-07-18T09:21:25.000Z"
+    }
+  ],
+  "ratings": [
+    {
+      "id": "rat_1",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_2",
+      "productId": "prod_1",
+      "orderId": null,
+      "createdAt": "2025-08-01T09:21:25.000Z"
+    },
+    {
+      "id": "rat_2",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_1",
+      "orderId": null,
+      "createdAt": "2025-08-02T09:21:25.000Z"
+    },
+    {
+      "id": "rat_3",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_4",
+      "productId": "prod_1",
+      "orderId": null,
+      "createdAt": "2025-08-03T09:21:25.000Z"
+    },
+    {
+      "id": "rat_4",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_2",
+      "productId": "prod_1",
+      "orderId": null,
+      "createdAt": "2025-08-04T09:21:25.000Z"
+    },
+    {
+      "id": "rat_5",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_3",
+      "productId": "prod_1",
+      "orderId": null,
+      "createdAt": "2025-08-05T09:21:25.000Z"
+    },
+    {
+      "id": "rat_6",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_4",
+      "productId": "prod_1",
+      "orderId": null,
+      "createdAt": "2025-08-06T09:21:25.000Z"
+    },
+    {
+      "id": "rat_7",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_2",
+      "orderId": null,
+      "createdAt": "2025-08-02T09:21:25.000Z"
+    },
+    {
+      "id": "rat_8",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_2",
+      "orderId": null,
+      "createdAt": "2025-08-03T09:21:25.000Z"
+    },
+    {
+      "id": "rat_9",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_4",
+      "productId": "prod_2",
+      "orderId": null,
+      "createdAt": "2025-08-04T09:21:25.000Z"
+    },
+    {
+      "id": "rat_10",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_2",
+      "productId": "prod_2",
+      "orderId": null,
+      "createdAt": "2025-08-05T09:21:25.000Z"
+    },
+    {
+      "id": "rat_11",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_2",
+      "orderId": null,
+      "createdAt": "2025-08-06T09:21:25.000Z"
+    },
+    {
+      "id": "rat_12",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_4",
+      "productId": "prod_2",
+      "orderId": null,
+      "createdAt": "2025-08-07T09:21:25.000Z"
+    },
+    {
+      "id": "rat_13",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_3",
+      "orderId": null,
+      "createdAt": "2025-08-03T09:21:25.000Z"
+    },
+    {
+      "id": "rat_14",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_3",
+      "productId": "prod_3",
+      "orderId": null,
+      "createdAt": "2025-08-04T09:21:25.000Z"
+    },
+    {
+      "id": "rat_15",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_4",
+      "productId": "prod_3",
+      "orderId": null,
+      "createdAt": "2025-08-05T09:21:25.000Z"
+    },
+    {
+      "id": "rat_16",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_3",
+      "orderId": null,
+      "createdAt": "2025-08-06T09:21:25.000Z"
+    },
+    {
+      "id": "rat_17",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_3",
+      "orderId": null,
+      "createdAt": "2025-08-07T09:21:25.000Z"
+    },
+    {
+      "id": "rat_18",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_2",
+      "productId": "prod_4",
+      "orderId": null,
+      "createdAt": "2025-08-04T09:21:25.000Z"
+    },
+    {
+      "id": "rat_19",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_3",
+      "productId": "prod_4",
+      "orderId": null,
+      "createdAt": "2025-08-05T09:21:25.000Z"
+    },
+    {
+      "id": "rat_20",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_4",
+      "productId": "prod_4",
+      "orderId": null,
+      "createdAt": "2025-08-06T09:21:25.000Z"
+    },
+    {
+      "id": "rat_21",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_4",
+      "orderId": null,
+      "createdAt": "2025-08-07T09:21:25.000Z"
+    },
+    {
+      "id": "rat_22",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_3",
+      "productId": "prod_4",
+      "orderId": null,
+      "createdAt": "2025-08-08T09:21:25.000Z"
+    },
+    {
+      "id": "rat_23",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_2",
+      "productId": "prod_5",
+      "orderId": null,
+      "createdAt": "2025-08-05T09:21:25.000Z"
+    },
+    {
+      "id": "rat_24",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_5",
+      "orderId": null,
+      "createdAt": "2025-08-06T09:21:25.000Z"
+    },
+    {
+      "id": "rat_25",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_4",
+      "productId": "prod_5",
+      "orderId": null,
+      "createdAt": "2025-08-07T09:21:25.000Z"
+    },
+    {
+      "id": "rat_26",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_2",
+      "productId": "prod_5",
+      "orderId": null,
+      "createdAt": "2025-08-08T09:21:25.000Z"
+    },
+    {
+      "id": "rat_27",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_6",
+      "orderId": null,
+      "createdAt": "2025-08-06T09:21:25.000Z"
+    },
+    {
+      "id": "rat_28",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_6",
+      "orderId": null,
+      "createdAt": "2025-08-07T09:21:25.000Z"
+    },
+    {
+      "id": "rat_29",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_4",
+      "productId": "prod_6",
+      "orderId": null,
+      "createdAt": "2025-08-08T09:21:25.000Z"
+    },
+    {
+      "id": "rat_30",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_2",
+      "productId": "prod_6",
+      "orderId": null,
+      "createdAt": "2025-08-09T09:21:25.000Z"
+    },
+    {
+      "id": "rat_31",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_7",
+      "orderId": null,
+      "createdAt": "2025-08-07T09:21:25.000Z"
+    },
+    {
+      "id": "rat_32",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_3",
+      "productId": "prod_7",
+      "orderId": null,
+      "createdAt": "2025-08-08T09:21:25.000Z"
+    },
+    {
+      "id": "rat_33",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_4",
+      "productId": "prod_7",
+      "orderId": null,
+      "createdAt": "2025-08-09T09:21:25.000Z"
+    },
+    {
+      "id": "rat_34",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_2",
+      "productId": "prod_8",
+      "orderId": null,
+      "createdAt": "2025-08-08T09:21:25.000Z"
+    },
+    {
+      "id": "rat_35",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_3",
+      "productId": "prod_8",
+      "orderId": null,
+      "createdAt": "2025-08-09T09:21:25.000Z"
+    },
+    {
+      "id": "rat_36",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_4",
+      "productId": "prod_8",
+      "orderId": null,
+      "createdAt": "2025-08-10T09:21:25.000Z"
+    },
+    {
+      "id": "rat_37",
+      "rating": 4.2,
+      "review": "I was a bit skeptical at first, but this product turned out to be even better than I imagined. The quality feels premium, it's easy to use, and it delivers exactly what was promised. I've already recommended it to friends and will definitely purchase again in the future.",
+      "userId": "user_2",
+      "productId": "prod_9",
+      "orderId": null,
+      "createdAt": "2025-08-09T09:21:25.000Z"
+    },
+    {
+      "id": "rat_38",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_9",
+      "orderId": null,
+      "createdAt": "2025-08-10T09:21:25.000Z"
+    },
+    {
+      "id": "rat_39",
+      "rating": 5,
+      "review": "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_10",
+      "orderId": null,
+      "createdAt": "2025-08-10T09:21:25.000Z"
+    },
+    {
+      "id": "rat_40",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_3",
+      "productId": "prod_10",
+      "orderId": null,
+      "createdAt": "2025-08-11T09:21:25.000Z"
+    },
+    {
+      "id": "rat_41",
+      "rating": 4.1,
+      "review": "This product is amazing. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.",
+      "userId": "user_2",
+      "productId": "prod_11",
+      "orderId": null,
+      "createdAt": "2025-08-11T09:21:25.000Z"
+    },
+    {
+      "id": "rat_42",
+      "rating": 4.3,
+      "review": "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.",
+      "userId": "user_2",
+      "productId": "prod_12",
+      "orderId": null,
+      "createdAt": "2025-08-12T09:21:25.000Z"
+    }
+  ],
+  "addresses": [
+    {
+      "id": "addr_1",
+      "userId": "user_1",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10001",
+      "country": "USA",
+      "phone": "1234567890",
+      "createdAt": "2025-07-19T09:21:25.000Z"
+    },
+    {
+      "id": "addr_2",
+      "userId": "user_2",
+      "name": "Kristin Watson",
+      "email": "kristin@example.com",
+      "street": "8 Elm Road",
+      "city": "Austin",
+      "state": "TX",
+      "zip": "73301",
+      "country": "USA",
+      "phone": "5550001111",
+      "createdAt": "2025-07-20T09:21:25.000Z"
+    }
+  ],
+  "coupons": [
+    {
+      "code": "NEW20",
+      "description": "20% Off for New Users",
+      "discount": 20,
+      "forNewUser": true,
+      "forMember": false,
+      "isPublic": false,
+      "expiresAt": "2026-12-31T00:00:00.000Z",
+      "createdAt": "2025-08-22T08:35:31.183Z"
+    },
+    {
+      "code": "NEW10",
+      "description": "10% Off for New Users",
+      "discount": 10,
+      "forNewUser": true,
+      "forMember": false,
+      "isPublic": false,
+      "expiresAt": "2026-12-31T00:00:00.000Z",
+      "createdAt": "2025-08-22T08:35:50.653Z"
+    },
+    {
+      "code": "OFF20",
+      "description": "20% Off for All Users",
+      "discount": 20,
+      "forNewUser": false,
+      "forMember": false,
+      "isPublic": false,
+      "expiresAt": "2026-12-31T00:00:00.000Z",
+      "createdAt": "2025-08-22T08:42:00.811Z"
+    },
+    {
+      "code": "OFF10",
+      "description": "10% Off for All Users",
+      "discount": 10,
+      "forNewUser": false,
+      "forMember": false,
+      "isPublic": false,
+      "expiresAt": "2026-12-31T00:00:00.000Z",
+      "createdAt": "2025-08-22T08:42:21.279Z"
+    },
+    {
+      "code": "PLUS10",
+      "description": "10% Off for Members",
+      "discount": 10,
+      "forNewUser": false,
+      "forMember": true,
+      "isPublic": false,
+      "expiresAt": "2027-03-06T00:00:00.000Z",
+      "createdAt": "2025-08-22T11:38:20.194Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order_1",
+      "total": 52.2,
+      "status": "DELIVERED",
+      "userId": "user_1",
+      "storeId": "store_1",
+      "addressId": "addr_1",
+      "isPaid": true,
+      "paymentMethod": "COD",
+      "isCouponUsed": true,
+      "coupon": {
+        "code": "OFF10",
+        "discount": 10,
+        "description": "10% Off for All Users"
+      },
+      "orderItems": [
+        {
+          "productId": "prod_1",
+          "quantity": 1,
+          "price": 29
+        },
+        {
+          "productId": "prod_2",
+          "quantity": 1,
+          "price": 29
+        }
+      ],
+      "createdAt": "2025-08-20T09:15:03.000Z",
+      "updatedAt": "2025-08-20T09:15:03.000Z"
+    },
+    {
+      "id": "order_2",
+      "total": 69.6,
+      "status": "DELIVERED",
+      "userId": "user_1",
+      "storeId": "store_1",
+      "addressId": "addr_1",
+      "isPaid": true,
+      "paymentMethod": "COD",
+      "isCouponUsed": true,
+      "coupon": {
+        "code": "NEW20",
+        "discount": 20,
+        "description": "20% Off for New Users"
+      },
+      "orderItems": [
+        {
+          "productId": "prod_3",
+          "quantity": 1,
+          "price": 29
+        },
+        {
+          "productId": "prod_4",
+          "quantity": 2,
+          "price": 29
+        }
+      ],
+      "createdAt": "2025-08-22T10:15:03.000Z",
+      "updatedAt": "2025-08-22T10:15:03.000Z"
+    },
+    {
+      "id": "order_3",
+      "total": 29,
+      "status": "SHIPPED",
+      "userId": "user_2",
+      "storeId": "store_1",
+      "addressId": "addr_2",
+      "isPaid": false,
+      "paymentMethod": "COD",
+      "isCouponUsed": false,
+      "coupon": null,
+      "orderItems": [
+        {
+          "productId": "prod_5",
+          "quantity": 1,
+          "price": 29
+        }
+      ],
+      "createdAt": "2025-08-23T11:15:03.000Z",
+      "updatedAt": "2025-08-23T11:15:03.000Z"
+    },
+    {
+      "id": "order_4",
+      "total": 87,
+      "status": "DELIVERED",
+      "userId": "user_2",
+      "storeId": "store_2",
+      "addressId": "addr_2",
+      "isPaid": true,
+      "paymentMethod": "COD",
+      "isCouponUsed": false,
+      "coupon": null,
+      "orderItems": [
+        {
+          "productId": "prod_9",
+          "quantity": 2,
+          "price": 29
+        },
+        {
+          "productId": "prod_11",
+          "quantity": 1,
+          "price": 29
+        }
+      ],
+      "createdAt": "2025-08-23T12:15:03.000Z",
+      "updatedAt": "2025-08-23T12:15:03.000Z"
+    },
+    {
+      "id": "order_5",
+      "total": 29,
+      "status": "PROCESSING",
+      "userId": "user_1",
+      "storeId": "store_2",
+      "addressId": "addr_1",
+      "isPaid": false,
+      "paymentMethod": "COD",
+      "isCouponUsed": false,
+      "coupon": null,
+      "orderItems": [
+        {
+          "productId": "prod_10",
+          "quantity": 1,
+          "price": 29
+        }
+      ],
+      "createdAt": "2025-08-24T13:15:03.000Z",
+      "updatedAt": "2025-08-24T13:15:03.000Z"
+    },
+    {
+      "id": "order_6",
+      "total": 69.6,
+      "status": "ORDER_PLACED",
+      "userId": "user_2",
+      "storeId": "store_1",
+      "addressId": "addr_2",
+      "isPaid": false,
+      "paymentMethod": "COD",
+      "isCouponUsed": true,
+      "coupon": {
+        "code": "OFF20",
+        "discount": 20,
+        "description": "20% Off for All Users"
+      },
+      "orderItems": [
+        {
+          "productId": "prod_6",
+          "quantity": 1,
+          "price": 29
+        },
+        {
+          "productId": "prod_7",
+          "quantity": 1,
+          "price": 29
+        },
+        {
+          "productId": "prod_8",
+          "quantity": 1,
+          "price": 29
+        }
+      ],
+      "createdAt": "2025-08-25T14:15:03.000Z",
+      "updatedAt": "2025-08-25T14:15:03.000Z"
+    },
+    {
+      "id": "order_7",
+      "total": 87,
+      "status": "ORDER_PLACED",
+      "userId": "user_1",
+      "storeId": "store_1",
+      "addressId": "addr_1",
+      "isPaid": false,
+      "paymentMethod": "COD",
+      "isCouponUsed": false,
+      "coupon": null,
+      "orderItems": [
+        {
+          "productId": "prod_2",
+          "quantity": 3,
+          "price": 29
+        }
+      ],
+      "createdAt": "2025-08-26T15:15:03.000Z",
+      "updatedAt": "2025-08-26T15:15:03.000Z"
+    }
+  ]
+}

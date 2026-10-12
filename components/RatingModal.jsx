@@ -4,21 +4,28 @@ import { Star } from 'lucide-react';
 import React, { useState } from 'react'
 import { XIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { addRating } from '@/lib/features/rating/ratingSlice';
+import { fetchProducts } from '@/lib/features/product/productSlice';
 
 const RatingModal = ({ ratingModal, setRatingModal }) => {
 
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState('');
+    const dispatch = useDispatch();
 
     const handleSubmit = async () => {
-        if (rating < 0 || rating > 5) {
-            return toast('Please select a rating');
+        if (rating < 1 || rating > 5) {
+            throw new Error('Please select a rating');
         }
         if (review.length < 5) {
-            return toast('write a short review');
+            throw new Error('Write a short review');
         }
-
+        await dispatch(addRating({ ...ratingModal, rating, review })).unwrap();
+        // Refresh products so the new review shows on the product page.
+        dispatch(fetchProducts());
         setRatingModal(null);
+        return 'Thanks for your review!';
     }
 
     return (
@@ -44,7 +51,7 @@ const RatingModal = ({ ratingModal, setRatingModal }) => {
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                 ></textarea>
-                <button onClick={e => toast.promise(handleSubmit(), { loading: 'Submitting...' })} className='w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition'>
+                <button onClick={e => toast.promise(handleSubmit(), { loading: 'Submitting...', success: (msg) => msg, error: (err) => err.message })} className='w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition'>
                     Submit Rating
                 </button>
             </div>

@@ -1,15 +1,19 @@
 import { PlusIcon, SquarePenIcon, XIcon } from 'lucide-react';
 import React, { useState } from 'react'
 import AddressModal from './AddressModal';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { placeOrder, verifyCoupon } from '@/lib/mockApi';
+import { clearCart } from '@/lib/features/cart/cartSlice';
 
 const OrderSummary = ({ totalPrice, items }) => {
 
     const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
 
     const router = useRouter();
+    const dispatch = useDispatch();
+    const { cartItems } = useSelector(state => state.cart);
 
     const addressList = useSelector(state => state.address.list);
 
@@ -21,13 +25,23 @@ const OrderSummary = ({ totalPrice, items }) => {
 
     const handleCouponCode = async (event) => {
         event.preventDefault();
-        
+        if (!couponCodeInput.trim()) throw new Error('Enter a coupon code');
+        const found = await verifyCoupon(couponCodeInput);
+        setCoupon(found);
+        return `Coupon ${found.code} applied`;
     }
 
     const handlePlaceOrder = async (e) => {
         e.preventDefault();
-
-        router.push('/orders')
+        await placeOrder({
+            cart: cartItems,
+            addressId: selectedAddress?.id,
+            paymentMethod,
+            couponCode: coupon ? coupon.code : null,
+        });
+        dispatch(clearCart());
+        router.push('/orders');
+        return 'Order placed';
     }
 
     return (
@@ -84,7 +98,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                 </div>
                 {
                     !coupon ? (
-                        <form onSubmit={e => toast.promise(handleCouponCode(e), { loading: 'Checking Coupon...' })} className='flex justify-center gap-3 mt-3'>
+                        <form onSubmit={e => toast.promise(handleCouponCode(e), { loading: 'Checking Coupon...', success: (msg) => msg, error: (err) => err.message })} className='flex justify-center gap-3 mt-3'>
                             <input onChange={(e) => setCouponCodeInput(e.target.value)} value={couponCodeInput} type="text" placeholder='Coupon Code' className='border border-slate-400 p-1.5 rounded w-full outline-none' />
                             <button className='bg-slate-600 text-white px-3 rounded hover:bg-slate-800 active:scale-95 transition-all'>Apply</button>
                         </form>
@@ -101,7 +115,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                 <p>Total:</p>
                 <p className='font-medium text-right'>{currency}{coupon ? (totalPrice - (coupon.discount / 100 * totalPrice)).toFixed(2) : totalPrice.toLocaleString()}</p>
             </div>
-            <button onClick={e => toast.promise(handlePlaceOrder(e), { loading: 'placing Order...' })} className='w-full bg-slate-700 text-white py-2.5 rounded hover:bg-slate-900 active:scale-95 transition-all'>Place Order</button>
+            <button onClick={e => toast.promise(handlePlaceOrder(e), { loading: 'placing Order...', success: (msg) => msg, error: (err) => err.message })} className='w-full bg-slate-700 text-white py-2.5 rounded hover:bg-slate-900 active:scale-95 transition-all'>Place Order</button>
 
             {showAddressModal && <AddressModal setShowAddressModal={setShowAddressModal} />}
 

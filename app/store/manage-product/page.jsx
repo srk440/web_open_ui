@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
 import Image from "next/image"
 import Loading from "@/components/Loading"
-import { productDummyData } from "@/assets/assets"
+import { getStoreProducts, toggleStock as toggleStockApi } from "@/lib/mockApi"
 
 export default function StoreManageProducts() {
 
@@ -13,14 +13,14 @@ export default function StoreManageProducts() {
     const [products, setProducts] = useState([])
 
     const fetchProducts = async () => {
-        setProducts(productDummyData)
+        setProducts(await getStoreProducts())
         setLoading(false)
     }
 
     const toggleStock = async (productId) => {
-        // Logic to toggle the stock of a product
-
-
+        const updated = await toggleStockApi(productId)
+        setProducts(prev => prev.map(product => product.id === productId ? updated : product))
+        return updated.inStock ? "Marked in stock" : "Marked out of stock"
     }
 
     useEffect(() => {
@@ -56,7 +56,7 @@ export default function StoreManageProducts() {
                             <td className="px-4 py-3">{currency} {product.price.toLocaleString()}</td>
                             <td className="px-4 py-3 text-center">
                                 <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
-                                    <input type="checkbox" className="sr-only peer" onChange={() => toast.promise(toggleStock(product.id), { loading: "Updating data..." })} checked={product.inStock} />
+                                    <input type="checkbox" className="sr-only peer" onChange={() => toast.promise(toggleStock(product.id), { loading: "Updating data...", success: (msg) => msg, error: (err) => err.message })} checked={product.inStock} />
                                     <div className="w-9 h-5 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
                                     <span className="dot absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4"></span>
                                 </label>

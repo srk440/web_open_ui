@@ -4,8 +4,18 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import toast from "react-hot-toast"
 import Loading from "@/components/Loading"
+import { useRouter } from "next/navigation"
+import { createStore, getMyStore, imageFileToDataUrl } from "@/lib/mockApi"
+
+const statusMessages = {
+    pending: "Your store has been submitted and is waiting for admin approval.",
+    approved: "Your store is approved! You can now add products from your dashboard.",
+    rejected: "Your store request was rejected. Please contact support for more details.",
+}
 
 export default function CreateStore() {
+
+    const router = useRouter()
 
     const [alreadySubmitted, setAlreadySubmitted] = useState(false)
     const [status, setStatus] = useState("")
@@ -26,29 +36,42 @@ export default function CreateStore() {
         setStoreInfo({ ...storeInfo, [e.target.name]: e.target.value })
     }
 
+    const showStatus = (store) => {
+        setAlreadySubmitted(true)
+        setStatus(store.status)
+        setMessage(statusMessages[store.status])
+    }
+
     const fetchSellerStatus = async () => {
-        // Logic to check if the store is already submitted
-
-
+        const store = await getMyStore()
+        if (store) showStatus(store)
         setLoading(false)
     }
 
     const onSubmitHandler = async (e) => {
         e.preventDefault()
-        // Logic to submit the store details
-
-
+        if (!storeInfo.image) throw new Error("Please upload a store logo")
+        const logo = await imageFileToDataUrl(storeInfo.image, 300)
+        const store = await createStore({ ...storeInfo, logo })
+        showStatus(store)
+        return "Store submitted for approval"
     }
 
     useEffect(() => {
         fetchSellerStatus()
     }, [])
 
+    useEffect(() => {
+        if (status !== "approved") return
+        const timer = setTimeout(() => router.push("/store"), 5000)
+        return () => clearTimeout(timer)
+    }, [status, router])
+
     return !loading ? (
         <>
             {!alreadySubmitted ? (
                 <div className="mx-6 min-h-[70vh] my-16">
-                    <form onSubmit={e => toast.promise(onSubmitHandler(e), { loading: "Submitting data..." })} className="max-w-7xl mx-auto flex flex-col items-start gap-3 text-slate-500">
+                    <form onSubmit={e => toast.promise(onSubmitHandler(e), { loading: "Submitting data...", success: (msg) => msg, error: (err) => err.message })} className="max-w-7xl mx-auto flex flex-col items-start gap-3 text-slate-500">
                         {/* Title */}
                         <div>
                             <h1 className="text-3xl ">Add Your <span className="text-slate-800 font-medium">Store</span></h1>

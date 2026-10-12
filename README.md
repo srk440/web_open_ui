@@ -63,6 +63,17 @@ You can start editing the page by modifying `app/(public)/page.js`. The page aut
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Outfit](https://vercel.com/font), a new font family for Vercel.
 
+### Mock database (no backend)
+
+The app runs entirely in the browser with no server or real database:
+
+- `data/db.json` is the seed data: users, stores, products, ratings, addresses, coupons and orders. Images live in `public/images/`.
+- `lib/mockApi.js` is the "API". Every page calls these async functions instead of `fetch()`. Changes (orders, new products, ratings, coupons, store approvals, cart) are saved to the browser's `localStorage` under the key `gocart_db`.
+- The signed-in user is `currentUserId` in `db.json` (`user_1`). That user is an admin and owns the approved store **Happy Shop**, so `/store` and `/admin` both work. `Gadget Hub` starts out pending so you can try `/admin/approve`.
+- Coupons to try at checkout: `OFF10`, `OFF20`, `PLUS10` (`NEW10`/`NEW20` only work for users with no orders).
+
+To reset the demo data, run `localStorage.removeItem('gocart_db')` in the browser console and reload. If you edit `db.json`, reset too, because the saved copy takes priority over the seed.
+
 ---
 
 ## 🤝 Contributing <a name="-contributing"></a>

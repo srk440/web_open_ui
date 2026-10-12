@@ -1,5 +1,5 @@
 'use client'
-import { storesDummyData } from "@/assets/assets"
+import { getPendingStores, setStoreStatus } from "@/lib/mockApi"
 import StoreInfo from "@/components/admin/StoreInfo"
 import Loading from "@/components/Loading"
 import { useEffect, useState } from "react"
@@ -12,14 +12,14 @@ export default function AdminApprove() {
 
 
     const fetchStores = async () => {
-        setStores(storesDummyData)
+        setStores(await getPendingStores())
         setLoading(false)
     }
 
     const handleApprove = async ({ storeId, status }) => {
-        // Logic to approve a store
-
-
+        await setStoreStatus(storeId, status)
+        setStores(prev => prev.filter(store => store.id !== storeId))
+        return status === 'approved' ? "Store approved" : "Store rejected"
     }
 
     useEffect(() => {
@@ -39,10 +39,10 @@ export default function AdminApprove() {
 
                             {/* Actions */}
                             <div className="flex gap-3 pt-2 flex-wrap">
-                                <button onClick={() => toast.promise(handleApprove({ storeId: store.id, status: 'approved' }), { loading: "approving" })} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm" >
+                                <button onClick={() => toast.promise(handleApprove({ storeId: store.id, status: 'approved' }), { loading: "approving", success: (msg) => msg, error: (err) => err.message })} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm" >
                                     Approve
                                 </button>
-                                <button onClick={() => toast.promise(handleApprove({ storeId: store.id, status: 'rejected' }), { loading: 'rejecting' })} className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600 text-sm" >
+                                <button onClick={() => toast.promise(handleApprove({ storeId: store.id, status: 'rejected' }), { loading: 'rejecting', success: (msg) => msg, error: (err) => err.message })} className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600 text-sm" >
                                     Reject
                                 </button>
                             </div>

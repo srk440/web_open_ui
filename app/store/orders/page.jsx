@@ -1,7 +1,8 @@
 'use client'
 import { useEffect, useState } from "react"
 import Loading from "@/components/Loading"
-import { orderDummyData } from "@/assets/assets"
+import toast from "react-hot-toast"
+import { getStoreOrders, updateOrderStatus as updateOrderStatusApi } from "@/lib/mockApi"
 
 export default function StoreOrders() {
     const [orders, setOrders] = useState([])
@@ -11,14 +12,18 @@ export default function StoreOrders() {
 
 
     const fetchOrders = async () => {
-       setOrders(orderDummyData)
+       setOrders(await getStoreOrders())
        setLoading(false)
     }
 
     const updateOrderStatus = async (orderId, status) => {
-        // Logic to update the status of an order
-
-
+        try {
+            const updated = await updateOrderStatusApi(orderId, status)
+            setOrders(prev => prev.map(order => order.id === orderId ? updated : order))
+            toast.success("Order status updated")
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     const openModal = (order) => {

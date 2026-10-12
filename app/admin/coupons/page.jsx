@@ -3,31 +3,34 @@ import { useEffect, useState } from "react"
 import { format } from "date-fns"
 import toast from "react-hot-toast"
 import { DeleteIcon } from "lucide-react"
-import { couponDummyData } from "@/assets/assets"
+import { addCoupon, deleteCoupon as deleteCouponApi, getCoupons } from "@/lib/mockApi"
+
+const emptyCoupon = () => ({
+    code: '',
+    description: '',
+    discount: '',
+    forNewUser: false,
+    forMember: false,
+    isPublic: false,
+    expiresAt: new Date()
+})
 
 export default function AdminCoupons() {
 
     const [coupons, setCoupons] = useState([])
 
-    const [newCoupon, setNewCoupon] = useState({
-        code: '',
-        description: '',
-        discount: '',
-        forNewUser: false,
-        forMember: false,
-        isPublic: false,
-        expiresAt: new Date()
-    })
+    const [newCoupon, setNewCoupon] = useState(emptyCoupon)
 
     const fetchCoupons = async () => {
-        setCoupons(couponDummyData)
+        setCoupons(await getCoupons())
     }
 
     const handleAddCoupon = async (e) => {
         e.preventDefault()
-        // Logic to add a coupon
-
-
+        const created = await addCoupon(newCoupon)
+        setCoupons(prev => [created, ...prev])
+        setNewCoupon(emptyCoupon())
+        return "Coupon added"
     }
 
     const handleChange = (e) => {
@@ -35,9 +38,9 @@ export default function AdminCoupons() {
     }
 
     const deleteCoupon = async (code) => {
-        // Logic to delete a coupon
-
-
+        await deleteCouponApi(code)
+        setCoupons(prev => prev.filter(coupon => coupon.code !== code))
+        return "Coupon deleted"
     }
 
     useEffect(() => {
@@ -48,7 +51,7 @@ export default function AdminCoupons() {
         <div className="text-slate-500 mb-40">
 
             {/* Add Coupon */}
-            <form onSubmit={(e) => toast.promise(handleAddCoupon(e), { loading: "Adding coupon..." })} className="max-w-sm text-sm">
+            <form onSubmit={(e) => toast.promise(handleAddCoupon(e), { loading: "Adding coupon...", success: (msg) => msg, error: (err) => err.message })} className="max-w-sm text-sm">
                 <h2 className="text-2xl">Add <span className="text-slate-800 font-medium">Coupons</span></h2>
                 <div className="flex gap-2 max-sm:flex-col mt-2">
                     <input type="text" placeholder="Coupon Code" className="w-full mt-2 p-2 border border-slate-200 outline-slate-400 rounded-md"
@@ -122,7 +125,7 @@ export default function AdminCoupons() {
                                     <td className="py-3 px-4 text-slate-800">{coupon.forNewUser ? 'Yes' : 'No'}</td>
                                     <td className="py-3 px-4 text-slate-800">{coupon.forMember ? 'Yes' : 'No'}</td>
                                     <td className="py-3 px-4 text-slate-800">
-                                        <DeleteIcon onClick={() => toast.promise(deleteCoupon(coupon.code), { loading: "Deleting coupon..." })} className="w-5 h-5 text-red-500 hover:text-red-800 cursor-pointer" />
+                                        <DeleteIcon onClick={() => toast.promise(deleteCoupon(coupon.code), { loading: "Deleting coupon...", success: (msg) => msg, error: (err) => err.message })} className="w-5 h-5 text-red-500 hover:text-red-800 cursor-pointer" />
                                     </td>
                                 </tr>
                             ))}
